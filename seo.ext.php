@@ -135,6 +135,7 @@ class EXT_Seo extends SYS_Model_Database
 	public function render($key, $val = NULL, $prefix = '', $suffix = '')
 	{
 		if (! empty($this->allow_overwrite[$key]) && $val) $this->$key = $val;
+		elseif (!$this->$key && isset($this->template) && !empty($this->template->$key)) $this->$key = $this->template->$key;
 		return $prefix . $this->$key . $suffix;
 	}
 	
